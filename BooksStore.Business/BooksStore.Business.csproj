@@ -42,7 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooksStoreBusiness.cs" />
+    <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BooksStore.Data\BooksStore.Data.csproj">
+      <Project>{63385098-546a-4082-b354-dbf96cc47124}</Project>
+      <Name>BooksStore.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

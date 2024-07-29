@@ -37,10 +37,10 @@ namespace BooksStore.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_name", DbType = DbType.String, Value = bookName });
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_synopsis", DbType = DbType.String, Value = bookSynopsis });
-                command.Parameters.Add(new SqlParameter() { ParameterName = "book_image", DbType = DbType.Int32, Value = bookImage });
-                command.Parameters.Add(new SqlParameter() { ParameterName = "book_isbn", DbType = DbType.Boolean, Value = bookIsbn });
-                command.Parameters.Add(new SqlParameter() { ParameterName = "book_price", DbType = DbType.Int32, Value = bookPrice });
-                command.Parameters.Add(new SqlParameter() { ParameterName = "book_status", DbType = DbType.String, Value = bookStatus });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "book_image", DbType = DbType.String, Value = bookImage });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "book_isbn", DbType = DbType.String, Value = bookIsbn });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "book_price", DbType = DbType.Double, Value = bookPrice });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "book_status", DbType = DbType.Boolean, Value = bookStatus });
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_created_at", DbType = DbType.DateTime, Value = bookCreatedAt });
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_last_updated", DbType = DbType.DateTime, Value = bookLastUpdated });
 
@@ -51,6 +51,7 @@ namespace BooksStore.Data
             }
             catch (Exception ex)
             {
+                var script = $"alert('The book {bookName} was added successfully')";
                 throw new ApplicationException($"Error to add book, id: : {ex.Message}");
             }
         }

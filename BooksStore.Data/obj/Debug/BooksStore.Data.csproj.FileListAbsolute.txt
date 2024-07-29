@@ -1,0 +1,6 @@
+C:\Users\1101467381\source\repos\FirstMVC\BooksStore.Data\bin\Debug\BooksStore.Data.dll
+C:\Users\1101467381\source\repos\FirstMVC\BooksStore.Data\bin\Debug\BooksStore.Data.pdb
+C:\Users\1101467381\source\repos\FirstMVC\BooksStore.Data\obj\Debug\BooksStore.Data.csproj.AssemblyReference.cache
+C:\Users\1101467381\source\repos\FirstMVC\BooksStore.Data\obj\Debug\BooksStore.Data.csproj.CoreCompileInputs.cache
+C:\Users\1101467381\source\repos\FirstMVC\BooksStore.Data\obj\Debug\BooksStore.Data.dll
+C:\Users\1101467381\source\repos\FirstMVC\BooksStore.Data\obj\Debug\BooksStore.Data.pdb

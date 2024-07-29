@@ -77,3 +77,7 @@ C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\obj\Debug\FirstMVC.csproj.Cor
 C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\obj\Debug\FirstMVC.csproj.CopyComplete
 C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\obj\Debug\FirstMVC.dll
 C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\obj\Debug\FirstMVC.pdb
+C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\bin\BooksStore.Business.dll
+C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\bin\BooksStore.Data.dll
+C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\bin\BooksStore.Business.pdb
+C:\Users\1101467381\source\repos\FirstMVC\FirstMVC\bin\BooksStore.Data.pdb

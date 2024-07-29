@@ -1,4 +1,6 @@
-﻿using FirstMVC.Models;
+﻿using BooksStore.Business;
+using BooksStore.Business.Models;
+using FirstMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,9 +75,42 @@ namespace FirstMVC.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var BooksStoreBusinessObject = new BooksStoreBusiness();
+                var SelectedGenresList = new List<GenreModel>();
+                 var name = collection["Name"].ToString();
 
-                return RedirectToAction("Index");
+                var datObject = new BooksStoreBusiness();
+                datObject.CreateBook(
+                    "dddd",
+                    "bookSynopsis",
+                    "bookSynopsis",
+                    "bookSynopsis",
+                    1.2,
+                    true,
+                    DateTime.Now,
+                    DateTime.Now);
+
+
+                /*var bookTitle = collection;
+                var bookSynopsis = txtBookSynopsis.Text.ToString();
+                var bookImage = txtBookImage.Text.ToString();
+
+                BooksStoreBusinessObject.CreateBook(bookTitle, bookSynopsis, bookImage);
+
+                var genresFullList = BooksStoreBusinessObject.GetGenres();
+
+                foreach (var genre in genresFullList)
+                {
+                    CheckBox selectedGenreCheckbox = (CheckBox)divGenresContainer.FindControl($"Genre{genre.Id}");
+                    if (selectedGenreCheckbox.Checked)
+                    {
+                        SelectedGenresList.Add(genre);
+                    }
+
+                }*/
+
+
+                return RedirectToAction("Books");
             }
             catch
             {
