@@ -20,13 +20,33 @@ namespace BooksStore.Data
         {
             ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
         }
+
+        public DataTable GetGenres()
+        {
+            try
+            {
+                var connection = new SqlConnection(ConnectionString);
+                var command = new SqlCommand("spGetGenres", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                var da = new SqlDataAdapter(command);
+                var ds = new DataSet();
+                da.Fill(ds);
+
+                return ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to get genres: {ex.Message}");
+            }
+        }
         public void CreateBook(
-            string bookTitle, 
-            string bookSynopsis, 
+            string bookTitle,
+            string bookSynopsis,
             string bookImage,
-            string bookIsbn, 
-            double bookPrice, 
-            bool bookStatus, 
+            string bookIsbn,
+            double bookPrice,
+            bool bookStatus,
             DateTime bookCreatedAt,
             DateTime bookLastUpdated)
         {

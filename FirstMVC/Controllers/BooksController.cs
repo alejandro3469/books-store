@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace FirstMVC.Controllers
 {
@@ -66,6 +67,19 @@ namespace FirstMVC.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
+            var genres = new BooksStoreBusiness().GetGenres();
+            ViewBag.Genres = genres;
+
+            foreach (var genre in genres)
+            {
+                CheckBox NewGenreCheckBox = new CheckBox
+                {
+                    ID = $"Genre{genre.Id}",
+                    Text = $"{genre.Name}"
+                };
+            }
+
+
             return View();
         }
 
@@ -77,12 +91,13 @@ namespace FirstMVC.Controllers
             {
                 var BooksStoreBusinessObject = new BooksStoreBusiness();
                 var SelectedGenresList = new List<GenreModel>();
+
                 var Title = collection["Title"].ToString();
                 var ISBN = collection["ISBN"].ToString();
                 var Synopsis = collection["Synopsis"].ToString();
                 var Image = collection["Image"].ToString();
                 var Price = Convert.ToDouble(collection["Price"]);
-                var Status = collection["Status"] != null ? true : false;
+                var Status = collection["Status"] != null;
 
                 var datObject = new BooksStoreBusiness();
                 datObject.CreateBook(
@@ -94,26 +109,6 @@ namespace FirstMVC.Controllers
                     Status,
                     DateTime.Now,
                     DateTime.Now);
-
-
-                /*var bookTitle = collection;
-                var bookSynopsis = txtBookSynopsis.Text.ToString();
-                var bookImage = txtBookImage.Text.ToString();
-
-                BooksStoreBusinessObject.CreateBook(bookTitle, bookSynopsis, bookImage);
-
-                var genresFullList = BooksStoreBusinessObject.GetGenres();
-
-                foreach (var genre in genresFullList)
-                {
-                    CheckBox selectedGenreCheckbox = (CheckBox)divGenresContainer.FindControl($"Genre{genre.Id}");
-                    if (selectedGenreCheckbox.Checked)
-                    {
-                        SelectedGenresList.Add(genre);
-                    }
-
-                }*/
-
 
                 return RedirectToAction("Books");
             }
