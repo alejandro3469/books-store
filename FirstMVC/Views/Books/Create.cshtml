@@ -63,7 +63,7 @@
             <div class="col-md-10">
                 @foreach (var genre in ViewBag.Genres)
                 {
-                    <input type="checkbox" id=@genre.Name name=@genre.Name text=@genre.Name>
+                    <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
                     <label for=@genre.Name>@genre.Name</label><br>
                 }
             </div>

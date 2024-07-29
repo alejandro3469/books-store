@@ -46,6 +46,8 @@ namespace BooksStore.Data
             string bookImage,
             string bookIsbn,
             double bookPrice,
+            List<String> SelectedGenresNames,
+            List<int> SelectedGenresIds,
             bool bookStatus,
             DateTime bookCreatedAt,
             DateTime bookLastUpdated)

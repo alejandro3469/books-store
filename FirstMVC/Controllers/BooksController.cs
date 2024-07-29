@@ -70,16 +70,6 @@ namespace FirstMVC.Controllers
             var genres = new BooksStoreBusiness().GetGenres();
             ViewBag.Genres = genres;
 
-            foreach (var genre in genres)
-            {
-                CheckBox NewGenreCheckBox = new CheckBox
-                {
-                    ID = $"Genre{genre.Id}",
-                    Text = $"{genre.Name}"
-                };
-            }
-
-
             return View();
         }
 
@@ -90,13 +80,22 @@ namespace FirstMVC.Controllers
             try
             {
                 var BooksStoreBusinessObject = new BooksStoreBusiness();
-                var SelectedGenresList = new List<GenreModel>();
+                var genresFullList = BooksStoreBusinessObject.GetGenres();
+                
 
                 var Title = collection["Title"].ToString();
                 var ISBN = collection["ISBN"].ToString();
                 var Synopsis = collection["Synopsis"].ToString();
                 var Image = collection["Image"].ToString();
                 var Price = Convert.ToDouble(collection["Price"]);
+                var SelectedGenresList = new List<GenreModel>();
+                foreach (var genre in genresFullList)
+                {
+                    if (collection[$"{genre.Name}"] != null)
+                    {
+                        SelectedGenresList.Add(genre);
+                    }
+                }
                 var Status = collection["Status"] != null;
 
                 var datObject = new BooksStoreBusiness();
@@ -107,6 +106,7 @@ namespace FirstMVC.Controllers
                     Image,
                     Price,
                     Status,
+                    SelectedGenresList,
                     DateTime.Now,
                     DateTime.Now);
 

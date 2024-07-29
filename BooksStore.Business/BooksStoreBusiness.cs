@@ -45,6 +45,7 @@ namespace BooksStore.Business
             string bookImage,
             string bookIsbn,
             double bookPrice,
+            List<GenreModel> SelectedGenresList,
             bool bookStatus,
             DateTime bookCreatedAt,
             DateTime bookLastUpdated)
@@ -58,6 +59,8 @@ namespace BooksStore.Business
                     bookImage,
                     bookIsbn,
                     bookPrice,
+                    SelectedGenresList.Select(genre => genre.Name).ToList(),
+                    SelectedGenresList.Select(genre => genre.Id).ToList(),
                     bookStatus,
                     bookCreatedAt,
                     bookLastUpdated);
