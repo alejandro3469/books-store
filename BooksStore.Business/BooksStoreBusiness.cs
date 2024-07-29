@@ -10,7 +10,7 @@ namespace BooksStore.Business
     public class BooksStoreBusiness
     {
         public void CreateBook(
-            string bookName,
+            string bookTitle,
             string bookSynopsis,
             string bookImage,
             string bookIsbn,
@@ -23,7 +23,7 @@ namespace BooksStore.Business
             {
                 var datObject = new BooksStoreData();
                 datObject.CreateBook(
-                    bookName,
+                    bookTitle,
                     bookSynopsis,
                     bookImage,
                     bookIsbn,

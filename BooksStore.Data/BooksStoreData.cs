@@ -21,7 +21,7 @@ namespace BooksStore.Data
             ConnectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
         }
         public void CreateBook(
-            string bookName, 
+            string bookTitle, 
             string bookSynopsis, 
             string bookImage,
             string bookIsbn, 
@@ -35,7 +35,7 @@ namespace BooksStore.Data
                 var connection = new SqlConnection(ConnectionString);
                 var command = new SqlCommand("spCreateBook", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter() { ParameterName = "book_name", DbType = DbType.String, Value = bookName });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "book_name", DbType = DbType.String, Value = bookTitle });
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_synopsis", DbType = DbType.String, Value = bookSynopsis });
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_image", DbType = DbType.String, Value = bookImage });
                 command.Parameters.Add(new SqlParameter() { ParameterName = "book_isbn", DbType = DbType.String, Value = bookIsbn });
@@ -47,11 +47,11 @@ namespace BooksStore.Data
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-                var script = $"alert('The book {bookName} was added successfully')";
+                var script = $"alert('The book {bookTitle} was added successfully')";
             }
             catch (Exception ex)
             {
-                var script = $"alert('The book {bookName} was added successfully')";
+                var script = $"alert('The book {bookTitle} was added successfully')";
                 throw new ApplicationException($"Error to add book, id: : {ex.Message}");
             }
         }

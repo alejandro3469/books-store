@@ -8,7 +8,7 @@ namespace FirstMVC.Models
     public class BookViewModel
     {
         public int BookID { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string ISBN { get; set; }
         public string Synopsis { get; set; }
         public string Image { get; set; }

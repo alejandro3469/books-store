@@ -20,7 +20,7 @@ namespace FirstMVC.Controllers
             _books.Add(new BookViewModel
             {
                 BookID = 1,
-                Name = "The Three Body Problem",
+                Title = "The Three Body Problem",
                 ISBN = "9780444566980",
                 Synopsis = "The Three-Body Problem is a story by Chinese science fiction author Liu Cixin, the first novel in the Remembrance of Earth's Past trilogy. The series portrays a fictional past, present, and future whe…",
                 Image = "https://erdorin.org/wp-content/uploads/2017/06/three-body-problem.jpg",
@@ -36,7 +36,7 @@ namespace FirstMVC.Controllers
             _books.Add(new BookViewModel
             {
                 BookID = 1,
-                Name = "1984",
+                Title = "1984",
                 ISBN = "54145145",
                 Synopsis = "abcd",
                 Image = "https://kopp-medien.websale.net/bilder/gross/133206.jpg",
@@ -77,16 +77,21 @@ namespace FirstMVC.Controllers
             {
                 var BooksStoreBusinessObject = new BooksStoreBusiness();
                 var SelectedGenresList = new List<GenreModel>();
-                 var name = collection["Name"].ToString();
+                var Title = collection["Title"].ToString();
+                var ISBN = collection["ISBN"].ToString();
+                var Synopsis = collection["Synopsis"].ToString();
+                var Image = collection["Image"].ToString();
+                var Price = Convert.ToDouble(collection["Price"]);
+                var Status = collection["Status"] != null ? true : false;
 
                 var datObject = new BooksStoreBusiness();
                 datObject.CreateBook(
-                    "dddd",
-                    "bookSynopsis",
-                    "bookSynopsis",
-                    "bookSynopsis",
-                    1.2,
-                    true,
+                    Title,
+                    ISBN,
+                    Synopsis,
+                    Image,
+                    Price,
+                    Status,
                     DateTime.Now,
                     DateTime.Now);
 
