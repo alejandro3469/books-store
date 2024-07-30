@@ -54,8 +54,6 @@ namespace BooksStore.Data
         {
             try
             {
-                
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
@@ -88,20 +86,34 @@ namespace BooksStore.Data
                     }
 
                     connection.Close();
-                        
+
                 }
-
-                
-
-
-                
-
                 var script = $"alert('The book {bookTitle} was added successfully')";
             }
             catch (Exception ex)
             {
                 var script = $"alert('The book {bookTitle} was added successfully')";
                 throw new ApplicationException($"Error to add book, id: : {ex.Message}");
+            }
+        }
+
+        public DataTable GetBooks()
+        {
+            try
+            {
+                var connection = new SqlConnection(ConnectionString);
+                var command = new SqlCommand("spGetBooks", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                var da = new SqlDataAdapter(command);
+                var ds = new DataSet();
+                da.Fill(ds);
+
+                return ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to get books: {ex.Message}");
             }
         }
     }
