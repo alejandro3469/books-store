@@ -73,22 +73,25 @@ namespace BooksStore.Data
                     command.Parameters.Add(new SqlParameter() { ParameterName = "book_last_updated", DbType = DbType.DateTime, Value = bookLastUpdated });
                     command.ExecuteNonQuery();
 
+                    SqlCommand IDToInsertCommand = connection.CreateCommand();
+                    IDToInsertCommand.CommandText = "SELECT MAX(book_id) FROM books";
+                    object result = IDToInsertCommand.ExecuteScalar();
+                    int IDToInsert = Convert.ToInt32(result);
+
                     for (int i = 0; i < SelectedGenresIds.Count; i++)
                     {
                         var command2 = new SqlCommand("spCreateBookHasGenre", connection);
                         command2.CommandType = CommandType.StoredProcedure;
-                        command2.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = 6 });
+                        command2.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = IDToInsert });
                         command2.Parameters.Add(new SqlParameter() { ParameterName = "genre_id", DbType = DbType.Int32, Value = SelectedGenresIds[i] });
                         command2.ExecuteNonQuery();
                     }
 
                     connection.Close();
+                        
                 }
 
-                /*SqlCommand IDToInsertCommand = connection.CreateCommand();
-                IDToInsertCommand.CommandText = "COALESCE((SELECT MAX(book_id) FROM books) + 1, 1";
-                object result = IDToInsertCommand.ExecuteScalar();
-                int IDToInsert = Convert.ToInt32(result);*/
+                
 
 
                 
