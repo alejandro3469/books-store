@@ -79,6 +79,9 @@ namespace FirstMVC.Controllers
         {
             try
             {
+                var genres = new BooksStoreBusiness().GetGenres();
+                ViewBag.Genres = genres;
+
                 var BooksStoreBusinessObject = new BooksStoreBusiness();
                 var genresFullList = BooksStoreBusinessObject.GetGenres();
                 
@@ -101,12 +104,13 @@ namespace FirstMVC.Controllers
                 var datObject = new BooksStoreBusiness();
                 datObject.CreateBook(
                     Title,
-                    ISBN,
                     Synopsis,
                     Image,
+                    ISBN,
                     Price,
-                    Status,
                     SelectedGenresList,
+                    Status,
+                   
                     DateTime.Now,
                     DateTime.Now);
 

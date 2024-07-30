@@ -46,7 +46,7 @@ namespace BooksStore.Data
             string bookImage,
             string bookIsbn,
             double bookPrice,
-            List<String> SelectedGenresNames,
+            List<string> SelectedGenresNames,
             List<int> SelectedGenresIds,
             bool bookStatus,
             DateTime bookCreatedAt,
@@ -69,6 +69,25 @@ namespace BooksStore.Data
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
+
+                /*connection.Open();
+                int lastId = Convert.ToInt32(command.ExecuteScalar());
+                connection.Close();*/
+
+                for (int i = 0; i < SelectedGenresIds.Count; i++)
+                {
+                    var command2 = new SqlCommand("spCreateBookHasGenre", connection);
+                    command2.CommandType = CommandType.StoredProcedure;
+                    command2.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = 2 });
+                    command2.Parameters.Add(new SqlParameter() { ParameterName = "genre_id", DbType = DbType.Int32, Value = SelectedGenresIds[i] });
+                    connection.Open();
+                    command2.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                
+
+                
                 var script = $"alert('The book {bookTitle} was added successfully')";
             }
             catch (Exception ex)
