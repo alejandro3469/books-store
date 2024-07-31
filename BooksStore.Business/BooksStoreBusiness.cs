@@ -82,27 +82,27 @@ namespace BooksStore.Business
                 var dataObject = new BooksStoreData();
                 var dt = dataObject.GetBooks();
 
-                var dishes = new List<BookModel>();
+                var books = new List<BookModel>();
 
                 foreach (DataRow item in dt.Rows)
                 {
-                    var dish = new BookModel()
+                    var book = new BookModel()
                     {
-                        Id = Convert.ToInt32(item["dish_id"]),
-                        Title = item["dish_name"].ToString(),
-                        Synopsis = item["dish_name"].ToString(),
-                        Image = item["dish_name"].ToString(),
-                        ISBN = item["dish_name"].ToString(),
-                        Price = 22.2,
-                        Status = true,
-                        CreatedAt = item["dish_created_at"] is DBNull ? DateTime.Now : Convert.ToDateTime(item["dish_created_at"]),
-                        LastUpdated = item["dish_created_at"] is DBNull ? DateTime.Now : Convert.ToDateTime(item["dish_created_at"]),
+                        Id = Convert.ToInt32(item["book_id"]),
+                        Title = item["book_name"].ToString(),
+                        Synopsis = item["book_synopsis"].ToString(), 
+                        Image = item["book_image"].ToString(),
+                        ISBN = item["book_isbn"].ToString(),
+                        Price = Convert.ToDouble(item["book_price"]),
+                        Status = Convert.ToBoolean(item["book_status"]),
+                        CreatedAt = Convert.ToDateTime(item["book_created_at"]),
+                        LastUpdated = Convert.ToDateTime(item["book_last_updated"]),
                     };
 
-                    dishes.Add(dish);
+                    books.Add(book);
                 }
 
-                return dishes;
+                return books;
             }
             catch (ApplicationException ex)
             {

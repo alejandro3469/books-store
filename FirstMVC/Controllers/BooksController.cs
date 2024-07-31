@@ -13,46 +13,16 @@ namespace FirstMVC.Controllers
     public class BooksController : Controller
     {
 
-        public static List<BookViewModel> _books;
+        public static List<BookModel> _books;
 
         public BooksController()
         {
-            _books = new List<BookViewModel>();
-            _books.Add(new BookViewModel
-            {
-                BookID = 1,
-                Title = "The Three Body Problem",
-                ISBN = "9780444566980",
-                Synopsis = "The Three-Body Problem is a story by Chinese science fiction author Liu Cixin, the first novel in the Remembrance of Earth's Past trilogy. The series portrays a fictional past, present, and future whe…",
-                Image = "https://erdorin.org/wp-content/uploads/2017/06/three-body-problem.jpg",
-                Format = Format.Paperback,
-                Language = Language.English,
-                Price = 400,
-                GenreId = 1,
-                AuthorID = 1,
-                Status = true,
-                CreatedAt = DateTime.Now,
-                LastUpdate = DateTime.Now
-            });
-            _books.Add(new BookViewModel
-            {
-                BookID = 1,
-                Title = "1984",
-                ISBN = "54145145",
-                Synopsis = "abcd",
-                Image = "https://kopp-medien.websale.net/bilder/gross/133206.jpg",
-                Format = Format.Paperback,
-                Language = Language.English,
-                Price = 200,
-                GenreId = 1,
-                AuthorID = 1,
-                Status = true,
-                CreatedAt = DateTime.Now,
-                LastUpdate = DateTime.Now
-            });
+            var books = new BooksStoreBusiness().GetBooks();
+
+            _books = books;
         }
         // GET: Books
-        public ActionResult Books()
+        public ActionResult BooksList()
         {
             return View(_books);
         }
@@ -60,7 +30,7 @@ namespace FirstMVC.Controllers
         // GET: Books/Details/5
         public ActionResult Details(int id)
         {
-            var book = _books.FirstOrDefault(x => x.BookID == id);
+            var book = _books.FirstOrDefault(x => x.Id == id);
             return View(book);
         }
 
@@ -84,7 +54,7 @@ namespace FirstMVC.Controllers
 
                 var BooksStoreBusinessObject = new BooksStoreBusiness();
                 var genresFullList = BooksStoreBusinessObject.GetGenres();
-                
+
 
                 var Title = collection["Title"].ToString();
                 var ISBN = collection["ISBN"].ToString();
@@ -110,11 +80,10 @@ namespace FirstMVC.Controllers
                     Price,
                     SelectedGenresList,
                     Status,
-                   
                     DateTime.Now,
                     DateTime.Now);
 
-                return RedirectToAction("Books");
+                return RedirectToAction("BooksList");
             }
             catch
             {
