@@ -113,5 +113,33 @@ namespace BooksStore.Business
                 throw new ApplicationException($"Error to convert dishes: {ex.Message}");
             }
         }
+
+        public List<string> GetSelectedBookCategories(int bookId)
+        {
+            try
+            {
+                var dataObject = new BooksStoreData();
+                var dt = dataObject.GetSelectedBookCategories(bookId);
+
+                var books = new List<string>();
+
+                foreach (DataRow item in dt.Rows)
+                {
+                    var book= Convert.ToString(item["cat_genre_name"]),
+
+                    books.Add(book);
+                }
+
+                return books;
+            }
+            catch (ApplicationException ex)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to convert dishes: {ex.Message}");
+            }
+        }
     }
 }

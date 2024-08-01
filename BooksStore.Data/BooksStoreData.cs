@@ -116,5 +116,25 @@ namespace BooksStore.Data
                 throw new ApplicationException($"Error to get books: {ex.Message}");
             }
         }
+        public DataTable GetSelectedBookCategories(int bookId)
+        {
+            try
+            {
+                var connection = new SqlConnection(ConnectionString);
+                var command = new SqlCommand("spGetSelectedBookCategories", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = bookId });
+
+                var da = new SqlDataAdapter(command);
+                var ds = new DataSet();
+                da.Fill(ds);
+
+                return ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to get genres: {ex.Message}");
+            }
+        }
     }
 }
