@@ -24,13 +24,16 @@ namespace FirstMVC.Controllers
         // GET: Books
         public ActionResult BooksList()
         {
+
             return View(_books);
         }
 
         // GET: Books/Details/5
-        public ActionResult Details(int id)
+        public ActionResult BookDetails(int id)
         {
             var book = _books.FirstOrDefault(x => x.Id == id);
+            ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
+            var n = new BooksStoreBusiness().GetSelectedBookCategories(id);
             return View(book);
         }
 

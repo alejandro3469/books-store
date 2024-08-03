@@ -1,4 +1,4 @@
-﻿@model List<FirstMVC.Models.BookModel>
+﻿@model List<BooksStore.Business.Models.BookModel>
 
 @{
     ViewBag.Title = "Books";
@@ -51,7 +51,7 @@
     {
         <tr class="d">
             <td>
-                @Html.DisplayFor(modelItem => item.BookID)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -69,10 +69,10 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GenreId)
+                Genres
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AuthorID)
+                Authors
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
@@ -81,12 +81,12 @@
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastUpdate)
+                @Html.DisplayFor(modelItem => item.LastUpdated)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

@@ -90,7 +90,7 @@ namespace BooksStore.Business
                     {
                         Id = Convert.ToInt32(item["book_id"]),
                         Title = item["book_name"].ToString(),
-                        Synopsis = item["book_synopsis"].ToString(), 
+                        Synopsis = item["book_synopsis"].ToString(),
                         Image = item["book_image"].ToString(),
                         ISBN = item["book_isbn"].ToString(),
                         Price = Convert.ToDouble(item["book_price"]),
@@ -121,16 +121,16 @@ namespace BooksStore.Business
                 var dataObject = new BooksStoreData();
                 var dt = dataObject.GetSelectedBookCategories(bookId);
 
-                var books = new List<string>();
+                var categories = new List<string>();
 
                 foreach (DataRow item in dt.Rows)
                 {
-                    var book= Convert.ToString(item["cat_genre_name"]),
+                    var categoryName = Convert.ToString(item["cat_genre_name"]);
 
-                    books.Add(book);
+                    categories.Add(categoryName);
                 }
 
-                return books;
+                return categories;
             }
             catch (ApplicationException ex)
             {
