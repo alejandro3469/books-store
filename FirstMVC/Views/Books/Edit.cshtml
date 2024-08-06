@@ -1,10 +1,10 @@
-﻿@model FirstMVC.Models.BookViewModel
+﻿@model BooksStore.Business.Models.BookModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -12,10 +12,10 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>BookViewModel</h4>
+        <h4>BookModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -63,9 +63,24 @@
             <div class="col-md-10">
                 @foreach (var genre in ViewBag.Genres)
                 {
-                    
-                    <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
-                    <label for=@genre.Name>@genre.Name</label><br>
+                    ViewBag.selected = false;
+                    foreach (var selectedGenre in ViewBag.selectedGenres)
+                    {
+                        if (genre.Name == selectedGenre)
+                        {
+                            ViewBag.selected = true;
+                        }
+                    }
+                    if (ViewBag.selected)
+                    {
+                        <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name" checked>
+                        <label for=@genre.Name>@genre.Name</label><br>
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
+                        <label for=@genre.Name>@genre.Name</label><br>
+                    }
                 }
             </div>
         </div>
@@ -82,14 +97,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Books")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

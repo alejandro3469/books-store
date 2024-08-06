@@ -33,7 +33,6 @@ namespace FirstMVC.Controllers
         {
             var book = _books.FirstOrDefault(x => x.Id == id);
             ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
-            var n = new BooksStoreBusiness().GetSelectedBookCategories(id);
             return View(book);
         }
 
@@ -97,6 +96,10 @@ namespace FirstMVC.Controllers
         // GET: Books/Edit/5
         public ActionResult Edit(int id)
         {
+            var selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
+            var genres = new BooksStoreBusiness().GetGenres();
+            ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
+            ViewBag.Genres = genres;
             return View();
         }
 
@@ -106,9 +109,42 @@ namespace FirstMVC.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                
 
-                return RedirectToAction("Index");
+                var BooksStoreBusinessObject = new BooksStoreBusiness();
+                var genresFullList = BooksStoreBusinessObject.GetGenres();
+
+                ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
+
+
+                var Title = collection["Title"].ToString();
+                var ISBN = collection["ISBN"].ToString();
+                var Synopsis = collection["Synopsis"].ToString();
+                var Image = collection["Image"].ToString();
+                var Price = Convert.ToDouble(collection["Price"]);
+                var SelectedGenresList = new List<GenreModel>();
+                foreach (var genre in genresFullList)
+                {
+                    if (collection[$"{genre.Name}"] != null)
+                    {
+                        SelectedGenresList.Add(genre);
+                    }
+                }
+                var Status = collection["Status"] != null;
+
+                var datObject = new BooksStoreBusiness();
+                datObject.CreateBook(
+                    Title,
+                    Synopsis,
+                    Image,
+                    ISBN,
+                    Price,
+                    SelectedGenresList,
+                    Status,
+                    DateTime.Now,
+                    DateTime.Now);
+
+                return RedirectToAction("BooksList");
             }
             catch
             {

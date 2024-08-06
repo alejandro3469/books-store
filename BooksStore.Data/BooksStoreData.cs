@@ -97,6 +97,57 @@ namespace BooksStore.Data
             }
         }
 
+        public void UpdateBook(
+            int bookId,
+            string bookTitle,
+            string bookSynopsis,
+            string bookImage,
+            string bookIsbn,
+            double bookPrice,
+            List<string> SelectedGenresNames,
+            List<int> SelectedGenresIds,
+            bool bookStatus,
+            DateTime bookLastUpdated)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    var command = new SqlCommand("spCreateBook", connection);
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = bookId });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_name", DbType = DbType.String, Value = bookTitle });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_synopsis", DbType = DbType.String, Value = bookSynopsis });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_image", DbType = DbType.String, Value = bookImage });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_isbn", DbType = DbType.String, Value = bookIsbn });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_price", DbType = DbType.Double, Value = bookPrice });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_status", DbType = DbType.Boolean, Value = bookStatus });
+                    command.Parameters.Add(new SqlParameter() { ParameterName = "book_last_updated", DbType = DbType.DateTime, Value = bookLastUpdated });
+                    command.ExecuteNonQuery();
+
+                    for (int i = 0; i < SelectedGenresIds.Count; i++)
+                    {
+                        var command2 = new SqlCommand("spCreateBookHasGenre", connection);
+                        command2.CommandType = CommandType.StoredProcedure;
+                        command2.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = bookId });
+                        command2.Parameters.Add(new SqlParameter() { ParameterName = "genre_id", DbType = DbType.Int32, Value = SelectedGenresIds[i] });
+                        command2.ExecuteNonQuery();
+                    }
+
+                    connection.Close();
+
+                }
+                var script = $"alert('The book {bookTitle} was updated successfully')";
+            }
+            catch (Exception ex)
+            {
+                var script = $"alert('The book {bookTitle} was updated successfully')";
+                throw new ApplicationException($"Error to add book, id: : {ex.Message}");
+            }
+        }
+
         public DataTable GetBooks()
         {
             try
