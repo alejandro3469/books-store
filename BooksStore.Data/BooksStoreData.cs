@@ -114,7 +114,7 @@ namespace BooksStore.Data
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    var command = new SqlCommand("spCreateBook", connection);
+                    var command = new SqlCommand("spUpdateBook", connection);
 
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = bookId });
@@ -126,6 +126,11 @@ namespace BooksStore.Data
                     command.Parameters.Add(new SqlParameter() { ParameterName = "book_status", DbType = DbType.Boolean, Value = bookStatus });
                     command.Parameters.Add(new SqlParameter() { ParameterName = "book_last_updated", DbType = DbType.DateTime, Value = bookLastUpdated });
                     command.ExecuteNonQuery();
+
+                    var command3 = new SqlCommand("spResetBookHasGenre", connection);
+                    command3.CommandType = CommandType.StoredProcedure;
+                    command3.Parameters.Add(new SqlParameter() { ParameterName = "book_id", DbType = DbType.Int32, Value = bookId });
+                    command3.ExecuteNonQuery();
 
                     for (int i = 0; i < SelectedGenresIds.Count; i++)
                     {

@@ -74,6 +74,41 @@ namespace BooksStore.Business
                 throw new ApplicationException($"Error to add book: {ex.Message}");
             }
         }
+        public void UpdateBook(
+            int bookId,
+            string bookTitle,
+            string bookSynopsis,
+            string bookImage,
+            string bookIsbn,
+            double bookPrice,
+            List<GenreModel> SelectedGenresList,
+            bool bookStatus,
+            DateTime bookLastUpdated)
+        {
+            try
+            {
+                var datObject = new BooksStoreData();
+                datObject.UpdateBook(
+                    bookId,
+                    bookTitle,
+                    bookSynopsis,
+                    bookImage,
+                    bookIsbn,
+                    bookPrice,
+                    SelectedGenresList.Select(genre => genre.Name).ToList(),
+                    SelectedGenresList.Select(genre => genre.Id).ToList(),
+                    bookStatus,
+                    bookLastUpdated);
+            }
+            catch (ApplicationException ex)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to add book: {ex.Message}");
+            }
+        }
 
         public List<BookModel> GetBooks()
         {

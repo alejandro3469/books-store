@@ -99,6 +99,7 @@ namespace FirstMVC.Controllers
             var selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
             var genres = new BooksStoreBusiness().GetGenres();
             ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
+            ViewBag.book = _books.FirstOrDefault(x => x.Id == id);
             ViewBag.Genres = genres;
             return View();
         }
@@ -109,7 +110,7 @@ namespace FirstMVC.Controllers
         {
             try
             {
-                
+
 
                 var BooksStoreBusinessObject = new BooksStoreBusiness();
                 var genresFullList = BooksStoreBusinessObject.GetGenres();
@@ -133,7 +134,8 @@ namespace FirstMVC.Controllers
                 var Status = collection["Status"] != null;
 
                 var datObject = new BooksStoreBusiness();
-                datObject.CreateBook(
+                datObject.UpdateBook(
+                    id,
                     Title,
                     Synopsis,
                     Image,
@@ -141,7 +143,6 @@ namespace FirstMVC.Controllers
                     Price,
                     SelectedGenresList,
                     Status,
-                    DateTime.Now,
                     DateTime.Now);
 
                 return RedirectToAction("BooksList");
