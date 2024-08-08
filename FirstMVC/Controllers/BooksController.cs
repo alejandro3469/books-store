@@ -24,6 +24,7 @@ namespace FirstMVC.Controllers
         // GET: Books
         public ActionResult BooksList()
         {
+            ViewBag.genres = new BooksStoreBusiness().GetGenres();
 
             return View(_books);
         }
