@@ -4,36 +4,56 @@
     ViewBag.Title = "BookDetails";
 }
 
-<div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 680px;">
+<div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 400px;">
     <div class="book_card" style="display: flex; flex-direction: column; width: 160px; max-width: 160px; gap: 16px; align-items: center;">
         <div style="width: 160px; max-width: 160px; height: 240px; overflow: hidden; border-radius: 8px;">
             <img src="@ViewBag.book.Image" style="width: 160px; max-width: 160px; height: auto; " class="book_image"
                  alt="Book cover">
         </div>
-        <div style="display: flex; flex-direction: column; gap: 16px; ">
-            <span>
-                <h3 style="font-size: 14px; font-weight: 500; letter-spacing: 0.1px; text-align: center;">
-                    @ViewBag.book.Title
-                </h3>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; ">
+            <span style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                <span style="display: flex; flex-direction: row; gap: 8px; align-items: center;">
+                    <span style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px;">
+                        @if (ViewBag.book.Status)
+                        {
+                            <div style="width: 8px; height: 8px; background-color: #69F0AE; border-radius: 16px;"> </div>
+                        }
+                        else
+                        {
+                            <div style="width: 8px; height: 8px; background-color: #FF4081; border-radius: 16px;"> </div>
+                        }
+                    </span>
+                    <h3 style="font-size: 14px; font-weight: 500; letter-spacing: 0.1px; text-align: center;">
+                        @ViewBag.book.Title
+                    </h3>
+                </span>
+
                 <p style="font-size: 12px; font-weight: 500; letter-spacing: 0.4px; color: #757575; text-align: center;">
                     Isaac Asimov
                 </p>
-            </span>
 
-            <div style="display: flex; flex-direction: row; gap: 16px;">
+            </span>
+            <div style="display: flex; flex-direction: row; gap: 8px; width: 100%; max-width: 320px; overflow-x: scroll;">
+                @foreach (var genre in ViewBag.selectedGenres)
+                {
+                    <span style="font-size: 14px; padding: 4px 8px; background-color: #F5F5F5; border-radius: 16px; white-space: nowrap;">@genre</span>
+                }
+            </div>
+
+            <div style="display: flex; flex-direction: row; gap: 32px;">
                 <p style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
-                    <span style="display: flex; flex-direction: row; gap: 8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                    <span style="display: flex; flex-direction: row; align-items: center; gap: 8px;">
+                        <svg style="padding: 4px; background-color: #F5F5F5;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
                             <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
                         </svg>@ViewBag.book.Price
-                    </span>Price
+                    </span><span style="font-size: 12px; font-weight: 500; color: #9E9E9E;">Price</span>
                 </p>
                 <p style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
-                    <span style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px; display: flex; flex-direction: row; gap: 8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                    <span style="display: flex; flex-direction: row; align-items: center; gap: 8px;">
+                        <svg style="padding: 4px; background-color: #F5F5F5;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                             <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
                         </svg>@ViewBag.book.ISBN
-                    </span>ISBN
+                    </span><span style="font-size: 12px; font-weight: 500; color: #9E9E9E;">ISBN</span>
                 </p>
             </div>
 
@@ -43,37 +63,29 @@
         </div>
     </div>
 
-    <p style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px; line-height: 1;">
+    <div style="font-size: 14px; font-weight: 400; color: #616161; text-align: justify; line-height: 1.6;">
         @ViewBag.book.Synopsis
-    </p>
-    <div style="display: flex; flex-direction: row; gap: 8px;">
-        @foreach (var genre in ViewBag.selectedGenres)
-        {
-            <p>@genre</p>
-        }
     </div>
-    <p style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px;">
-        @ViewBag.book.CreatedAt
-    </p>
-    <p style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px;">
-        @ViewBag.book.LastUpdated
-    </p>
 
-    <p style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px;">
-        @if (ViewBag.book.Status)
-        {
-            <span>Available</span>
-        }
-        else
-        {
-            <span>Unvailable</span>
-        }
-    </p>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px; text-align: left; align-self: left; color: #BDBDBD;">
+            Created at: @ViewBag.book.CreatedAt
+        </div>
+        <div style="font-size: 14px; font-weight: 400; letter-spacing: 0.4px; text-align: left; align-self: left; color: #BDBDBD;">
+            Last update: @ViewBag.book.LastUpdated
+        </div>
+    </div>
+
+
 </div>
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a href="/Books/Edit/@ViewBag.book.Id" style="position: absolute; right: 0; top: 0; padding: 16px; display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+        </svg>
+    </a>
     <a href="/Books/BooksList" style="position: absolute; left: 0; top: 0; padding: 16px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />

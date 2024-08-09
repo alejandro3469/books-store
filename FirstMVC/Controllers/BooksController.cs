@@ -34,6 +34,7 @@ namespace FirstMVC.Controllers
         {
             var book = _books.FirstOrDefault(x => x.Id == id);
             ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
+            ViewBag.book = book;
             return View(book);
         }
 
