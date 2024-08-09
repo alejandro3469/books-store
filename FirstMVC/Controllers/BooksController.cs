@@ -37,6 +37,13 @@ namespace FirstMVC.Controllers
             ViewBag.book = book;
             return View(book);
         }
+        // GET: Dashboard
+        public ActionResult Dashboard()
+        {
+            ViewBag.genres = new BooksStoreBusiness().GetGenres();
+
+            return View(_books);
+        }
 
         // GET: Books/Create
         public ActionResult Create()
