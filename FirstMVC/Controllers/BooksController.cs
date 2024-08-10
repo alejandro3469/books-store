@@ -1,4 +1,4 @@
-﻿using BooksStore.Business;
+using BooksStore.Business;
 using BooksStore.Business.Models;
 using FirstMVC.Models;
 using System;
@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace FirstMVC.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
 
@@ -30,9 +31,10 @@ namespace FirstMVC.Controllers
         }
 
         // GET: Books/Details/5
-        [Authorize]
         public ActionResult BookDetails(int id)
         {
+            var user = SessionManager.GetUserSession();
+            var algo = SessionManager.GetUserClaims();
             var book = _books.FirstOrDefault(x => x.Id == id);
             ViewBag.selectedGenres = new BooksStoreBusiness().GetSelectedBookCategories(id);
             ViewBag.book = book;
