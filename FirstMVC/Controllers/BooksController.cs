@@ -14,7 +14,7 @@ namespace FirstMVC.Controllers
     {
 
         public static List<BookModel> _books;
-
+        
         public BooksController()
         {
             var books = new BooksStoreBusiness().GetBooks();
@@ -30,6 +30,7 @@ namespace FirstMVC.Controllers
         }
 
         // GET: Books/Details/5
+        [Authorize]
         public ActionResult BookDetails(int id)
         {
             var book = _books.FirstOrDefault(x => x.Id == id);
