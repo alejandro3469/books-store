@@ -3,40 +3,48 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
-<table style="width: 100%; overflow-x: scroll;">
-    <thead>
-        <tr>
-            <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: left; white-space: nowrap;">Title</th>
-            <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: left; white-space: nowrap;">Created at</th>
-            <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: left; white-space: nowrap;">Last update</th>
-            <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: center; white-space: nowrap;">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div style="width: 100%; max-width: 100vw; overflow-x: scroll;">
+    <table style="width: 100%;">
+        <thead>
             <tr>
-                <td style="padding: 16px 16px; white-space: nowrap; text-align: left;">@item.Title</td>
-                <td style="padding: 16px 16px; white-space: nowrap; text-align: left;">@((DateTime.Now.Date-item.CreatedAt.Date).Days) days ago</td>
-                <td style="padding: 16px 16px; white-space: nowrap; text-align: left;">@((DateTime.Now.Date-item.LastUpdated.Date).Days) days ago</td>
-                <td style="padding: 16px 16px; white-space: nowrap; text-align: center; display: flex; justify-content: space-between;">
-                    
-                    <a href="/Books/BookDetails/@item.Id">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
-                        </svg>
-                    </a><a href="/Books/Edit/@item.Id">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </a>
-                </td>
+                <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: center; white-space: nowrap;">Action</th>
+                <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: left; white-space: nowrap;">Title</th>
+                <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: left; white-space: nowrap;">Created at</th>
+                <th style="color: #BDBDBD; padding: 16px; margin 0; border-top: 1.6px solid #EEEEEE; border-bottom: 1.6px solid #EEEEEE; text-align: left; white-space: nowrap;">Last update</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="padding: 16px 16px; white-space: nowrap; text-align: center; display: flex; justify-content: space-between;">
 
+                        <a href="/Books/BookDetails/@item.Id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                            </svg>
+                        </a><a href="/Books/Edit/@item.Id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg>
+                        </a>
+                    </td>
+                    <td style="padding: 16px 16px; white-space: nowrap; text-align: left;">@item.Title</td>
+                    <td style="padding: 16px 16px; white-space: nowrap; text-align: left;">@((DateTime.Now.Date-item.CreatedAt.Date).Days) days ago</td>
+                    <td style="padding: 16px 16px; white-space: nowrap; text-align: left;">@((DateTime.Now.Date-item.LastUpdated.Date).Days) days ago</td>
 
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="/Books/Create">
+        <div style="position: fixed; bottom: 100px; right: calc(50% - 20px);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#651FFF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+            </svg>
+        </div>
+    </a>
+</div>

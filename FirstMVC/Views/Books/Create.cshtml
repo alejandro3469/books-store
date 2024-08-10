@@ -4,75 +4,71 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>BookViewModel</h4>
-        <hr />
+    <div style="display: flex; gap: 24px; flex-direction: column; width: 100%;">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Title" id="Title" class="form-control" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Title</label>
+            <div style="width: 100%;">
+                <input type="text" name="Title" id="Title" style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" />
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
 
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="ISBN" id="ISBN" class="form-control" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">ISBN</label>
+            <div style="width: 100%;">
+                <input type="text" name="ISBN" id="ISBN" style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" />
                 @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Synopsis, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Synopsis" id="Synopsis" class="form-control" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Synopsis</label>
+            <div style="width: 100%;">
+                <input type="text" name="Synopsis" id="Synopsis" style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" />
                 @Html.ValidationMessageFor(model => model.Synopsis, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Image" id="Image" class="form-control" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Image</label>
+            <div style="width: 100%;">
+                <input type="text" name="Image" id="Image" style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" />
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Price" id="Price" class="form-control" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Price</label>
+            <div style="width: 100%;">
+                <input type="text" name="Price" id="Price" style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" />
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Genres</label><br>
-            <div class="col-md-10">
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Genres</label>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; line-height: 0.4">
                 @foreach (var genre in ViewBag.Genres)
                 {
-
-                    <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
-                    <label for=@genre.Name>@genre.Name</label><br>
+                    <span style="display: flex; align-items: center; font-size: 14px; gap: 4px;">
+                        <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
+                        <label for=@genre.Name>@genre.Name</label>
+                    </span>
                 }
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Status</label>
+            <div style="display: flex; align-items: center; font-size: 14px; gap: 4px;">
                 <input type="checkbox" id="Status" name="Status">
                 <label for="Status">Available</label><br>
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -82,15 +78,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" style="padding: 8px 16px; color: white; background-color: #7C4DFF; border: none; min-width: 120px; border-radius: 8px; font-weight: 300; font-size: 16px;" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Books")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
