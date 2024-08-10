@@ -8,3 +8,11 @@
 body {
     font-family: "Roboto", sans-serif;
 }
+::placeholder {
+    color: #616161;
+    font-size: 16px;
+}
+::-ms-input-placeholder { /* Edge 12-18 */
+    color: #616161;
+    font-size: 16px;
+}

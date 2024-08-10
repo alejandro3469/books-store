@@ -4,63 +4,58 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>BookModel</h4>
-        <hr />
+    <div style="display: flex; gap: 24px; flex-direction: column; width: 100%;">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Title" id="Title" class="form-control" value="@ViewBag.book.Title" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Title</label>
+            <div style="width: 100%;">
+                <input style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" type="text" name="Title" id="Title" class="form-control" value="@ViewBag.book.Title" />
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
-
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="ISBN" id="ISBN" class="form-control" value="@ViewBag.book.ISBN" />
+        <div style="display: flex; gap: 4px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">ISBN</label>
+            <div style="width: 100%;">
+                <input style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" type="text" name="ISBN" id="ISBN" class="form-control" value="@ViewBag.book.ISBN" />
                 @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Synopsis, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Synopsis" id="Synopsis" class="form-control" value="@ViewBag.book.Synopsis" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Synopsis</label>
+            <div style="width: 100%;">
+                <input style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" type="text" name="Synopsis" id="Synopsis" class="form-control" value="@ViewBag.book.Synopsis" />
                 @Html.ValidationMessageFor(model => model.Synopsis, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Image" id="Image" class="form-control" value="@ViewBag.book.Image" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Image</label>
+            <div style="width: 100%;">
+                <input style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" type="text" name="Image" id="Image" class="form-control" value="@ViewBag.book.Image" />
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Price" id="Price" class="form-control" value="@ViewBag.book.Price" />
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Price</label>
+            <div style="width: 100%;">
+                <input style="padding: 8px; border: 1px solid #E0E0E0; border-radius: 8px; width: 100%; max-width: 320px;" type="text" name="Price" id="Price" class="form-control" value="@ViewBag.book.Price" />
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Genres</label><br>
-            <div class="col-md-10">
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Genres</label>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; line-height: 0.4">
                 @foreach (var genre in ViewBag.Genres)
                 {
                     ViewBag.selected = false;
@@ -73,29 +68,36 @@
                     }
                     if (ViewBag.selected)
                     {
-                        <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name" checked>
-                        <label for=@genre.Name>@genre.Name</label><br>
+                        <span style="display: flex; align-items: center; font-size: 14px; gap: 4px;">
+                            <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name" checked>
+                            <label for=@genre.Name>@genre.Name</label>
+                        </span>
                     }
                     else
-                    {
-                        <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
-                        <label for=@genre.Name>@genre.Name</label><br>
+                    {<span style="display: flex; align-items: center; font-size: 14px; gap: 4px;">
+                            <input type="checkbox" id="@genre.Name" name="@genre.Name" text="@genre.Name">
+                            <label for=@genre.Name>@genre.Name</label>
+                        </span>
                     }
                 }
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div style="display: flex; gap: 8px; flex-direction: column; width: 100%;">
+            <label for="Title" style="font-size: 12px; width: 100%; font-weight: 500; color: #424242;">Status</label>
+            <div>
                 @if (ViewBag.book.Status)
-                {
-                    <input type="checkbox" id="Status" name="Status" checked>
-                } else
-                {
-                    <input type="checkbox" id="Status" name="Status">
+                {<span style="display: flex; align-items: center; font-size: 14px; gap: 4px;">
+                        <input type="checkbox" id="Status" name="Status" checked>
+                        <span>Available</span>
+                    </span>
                 }
-                <label for="Status">Available</label><br>
+                else
+                {<span style="display: flex; align-items: center; font-size: 14px; gap: 4px;">
+                        <input type="checkbox" id="Status" name="Status">
+                        <span>Available</span>
+                    </span>
+                }
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
 
             </div>
@@ -103,15 +105,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" style="padding: 8px 16px; color: white; background-color: #7C4DFF; border: none; min-width: 120px; border-radius: 8px; font-weight: 300; font-size: 16px;" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
