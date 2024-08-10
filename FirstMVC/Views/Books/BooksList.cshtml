@@ -34,7 +34,7 @@
     <div class="books_cards_list" style="display: flex; flex-direction: row; gap: 16px; flex-wrap: wrap;">
         @foreach (var item in Model)
         {
-            <a href="/Books/BookDetails/@item.Id">
+            <a href="/Books/BookDetails/@item.Id" style="@(!item.Status ? "display: none;" : "")">
                 <div class="book_card" style="display: flex; flex-direction: column; width: 160px; max-width: 160px; gap: 16px;">
                     <div style="width: 160px; max-width: 160px; height: 240px; overflow: hidden; border-radius: 8px;">
                         <img src="@item.Image" style="width: 160px; max-width: 160px; height: auto; " class="book_image" alt="Book cover">
